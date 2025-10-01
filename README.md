@@ -18,7 +18,7 @@ The firmware is written in C++ for the Arduino platform. You'll need to install 
 * `AccelStepper.h`: For controlling the stepper motor's movement.
 * `TFMPlus.h`: For communicating with the TFMini-S LiDAR sensor.
 
-### Python (`python_visualizer/visualizer.py`)
+### Python (`visualizer.py`)
 The real-time visualization is a Python script that reads the serial data from the Arduino and plots it. You'll need to install a few Python libraries to get it running.
 
 You can install the dependencies by running this command in your terminal:
