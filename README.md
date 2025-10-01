@@ -1,81 +1,120 @@
-High-Speed 3D LiDAR Room Scanner
-This project is a 3D room scanner built with an Arduino, a TFMini-S LiDAR sensor, a servo, and a stepper motor. It rapidly captures distance and angle data to generate a 3D point cloud model of a room, which is visualized in real-time on a computer using Python.
+# High-Speed 3D LiDAR Room Scanner
 
-The key feature of this project is its high-speed scanning technique. By soldering a wire to the servo's internal potentiometer, we can sample its precise angle at over 500Hz while it moves at maximum speed. This allows for the collection of over 28,000 data points in a fraction of the time required by traditional step-and-sample methods, resulting in a scan that is over four times faster than comparable projects.
+This repository contains the code for a 3D room scanner I built using an Arduino, a LiDAR sensor, and a couple of motors. The system rapidly captures distance and angle data to generate a 3D point cloud of a room, which is then visualized in real-time with a Python script.
 
-Final Result Preview
+The most interesting feature of this project is its high-speed scanning technique. Standard methods of stopping the scanner to take a reading at each point are quite slow. To solve this, I modified the servo to read its precise angle directly from its internal potentiometer while it moves at full speed. This approach allows the system to sample at over 500Hz, collecting over 28,000 data points and creating a detailed scan more than four times faster than comparable projects.
+
+### My Final Scan Result
 <img width="843" height="736" alt="kitchen_scan" src="https://github.com/user-attachments/assets/cceeaa2b-2d00-4dad-a0fc-d7e5550cc0bd" />
 
+---
 
-Hardware Components
-Component	Description
-Arduino	Any Arduino-compatible board (e.g., Uno, Nano).
-TFMini-S LiDAR	A single-point ranging LiDAR sensor.
-MG995 Servo	Modified to read its internal potentiometer for high-speed angle feedback.
-28BYJ-48 Stepper Motor	Used for 180-degree horizontal rotation (theta axis).
-Potentiometer	External pot for servo calibration (or directly use the internal one).
-3D Printed Parts	Custom-designed housing for stability and clean aesthetics.
+## Hardware Components
 
-Export to Sheets
-Software & Libraries
-Arduino (arduino_scanner/scanner.ino)
-The firmware is written in C++ for the Arduino platform. It requires the following libraries:
+To build this scanner, you'll need the following hardware components. I've listed what I used below.
 
-Servo.h: For controlling the servo motor.
+| Component | Description |
+| :--- | :--- |
+| **Arduino** | Any Arduino-compatible board should work (e.g., Uno, Nano). |
+| **TFMini-S LiDAR** | A single-point ranging LiDAR sensor. |
+| **MG995 Servo**| This needs to be modified to read its internal potentiometer for high-speed angle feedback. |
+| **28BYJ-48 Stepper Motor** | Used for the 180-degree horizontal rotation (the theta axis). |
+| **3D Printed Parts** | I designed a custom housing to keep the scanner stable and the electronics tidy. |
 
-AccelStepper.h: For controlling the stepper motor's movement.
+---
 
-TFMPlus.h: For communicating with the TFMini-S LiDAR sensor.
+## Software and Libraries
 
-Python (python_visualizer/visualizer.py)
-The real-time visualization is a Python script that reads serial data from the Arduino and plots it. It requires the following libraries:
+The project is split into two main parts: the Arduino firmware that runs the scanner, and the Python script that visualizes the data.
 
-pyserial: To read data from the serial port.
+### Arduino (`arduino_scanner/scanner.ino`)
+The firmware is written in C++ for the Arduino platform. You'll need to install the following libraries from the Arduino Library Manager:
+* `Servo.h`: For controlling the servo motor.
+* `AccelStepper.h`: For controlling the stepper motor's movement.
+* `TFMPlus.h`: For communicating with the TFMini-S LiDAR sensor.
 
-numpy: For efficient numerical calculations (e.g., coordinate conversion).
+### Python (`python_visualizer/visualizer.py`)
+The real-time visualization is a Python script that reads the serial data from the Arduino and plots it. You'll need to install a few Python libraries to get it running.
 
-matplotlib: For creating the 3D scatter plot.
-
-To install the Python dependencies, run:
-
-Bash
-
+You can install the dependencies by running this command in your terminal:
+```bash 
 pip install pyserial numpy matplotlib
-Setup and Installation
-1. Hardware Assembly & Wiring
-3D Print Parts: Print the necessary housing and mounts to ensure the scanner is mechanically stable. Wobbling can introduce errors in the final 3D model.
+```
+Of course. Here is the complete README.md file, rewritten to have a more natural tone and incorporating all the information about the license and how to add your own images.
 
-Modify the Servo: This is the most critical step. Carefully open the servo casing and solder a wire to the middle pin of the internal potentiometer. This wire will output an analog voltage corresponding to the servo's angle, which should be connected to an analog pin on the Arduino (e.g., A0).
+Just copy the entire block of code below and paste it into the README.md editor on GitHub.
+
+Markdown
+
+# High-Speed 3D LiDAR Room Scanner
+
+This repository contains the code for a 3D room scanner I built using an Arduino, a LiDAR sensor, and a couple of motors. The system rapidly captures distance and angle data to generate a 3D point cloud of a room, which is then visualized in real-time with a Python script.
+
+The most interesting feature of this project is its high-speed scanning technique. Standard methods of stopping the scanner to take a reading at each point are quite slow. To solve this, I modified the servo to read its precise angle directly from its internal potentiometer while it moves at full speed. This approach allows the system to sample at over 500Hz, collecting over 28,000 data points and creating a detailed scan more than four times faster than comparable projects.
+
+### My Final Scan Result
+![Final 3D Scan of a room corner](./images/final-scan.png)
+
+---
+
+## Hardware Components
+
+To build this scanner, you'll need the following hardware components. I've listed what I used below.
+
+| Component | Description |
+| :--- | :--- |
+| **Arduino** | Any Arduino-compatible board should work (e.g., Uno, Nano). |
+| **TFMini-S LiDAR** | A single-point ranging LiDAR sensor. |
+| **MG995 Servo**| This needs to be modified to read its internal potentiometer for high-speed angle feedback. |
+| **28BYJ-48 Stepper Motor** | Used for the 180-degree horizontal rotation (the theta axis). |
+| **3D Printed Parts** | I designed a custom housing to keep the scanner stable and the electronics tidy. |
+
+---
+
+## Software and Libraries
+
+The project is split into two main parts: the Arduino firmware that runs the scanner, and the Python script that visualizes the data.
+
+### Arduino (`arduino_scanner/scanner.ino`)
+The firmware is written in C++ for the Arduino platform. You'll need to install the following libraries from the Arduino Library Manager:
+* `Servo.h`: For controlling the servo motor.
+* `AccelStepper.h`: For controlling the stepper motor's movement.
+* `TFMPlus.h`: For communicating with the TFMini-S LiDAR sensor.
+
+### Python (`python_visualizer/visualizer.py`)
+The real-time visualization is a Python script that reads the serial data from the Arduino and plots it. You'll need to install a few Python libraries to get it running.
+
+You can install the dependencies by running this command in your terminal:
+```bash
+pip install pyserial numpy matplotlib
+```
+
+
+## Hardware Assembly and Wiring
+3D Print Parts: First, print the necessary housing and mounts. A stable mechanical assembly is key, as any wobbling can introduce errors in the final 3D model.
+
+Modify the Servo: You'll need to carefully open the servo casing and solder a wire to the middle pin of the internal potentiometer. This wire will output an analog voltage corresponding to the servo's angle, allowing the server to sweep quickly while also getting accurate and fast readings.
 
 Wire the Components:
 
-TFMini-S LiDAR: Connect to Serial2 on the Arduino.
+TFMini-S LiDAR: Connect this to Serial2 on the Arduino.
 
-Servo: Connect the control pin to pin 6.
+Servo: Connect the main control pin to pin 6.
 
 Stepper Motor: Connect IN1, IN2, IN3, IN4 to pins 8, 9, 10, 11.
 
-Servo Potentiometer Wire: Connect the soldered wire to pin A0.
+Servo Potentiometer Wire: Connect the new wire you soldered to an analog pin, like A0.
 
-2. Software Setup
-Configure Arduino Code: Open scanner.ino in the Arduino IDE. Install the required libraries via the Library Manager.
-
-Configure Python Script: Open visualizer.py. Change the PORT variable to match the serial port of your Arduino.
-
-Windows: It will look like 'COM3' or 'COM4'.
-
-macOS/Linux: It will look like '/dev/cu.usbmodem...' or '/dev/ttyACM0'.
-
-How to Run
+## How to Run:
 Upload the Code: Connect the Arduino to your computer and upload the scanner.ino sketch.
 
 Open Serial Monitor (Optional): You can open the Arduino Serial Monitor at 115200 baud to see the raw r,phi,theta data being streamed.
 
 Run the Visualizer: Execute the Python script from your terminal.
 
-Bash
-
+``` Bash
 python visualizer.py
+```
 Scan: A 3D plot window will appear. The scanner will begin its 180-degree sweep, and points will be plotted in real-time.
 
 Stop and Finalize: Once the scan is complete, press Ctrl+C in the terminal where the Python script is running. This will stop the live plotting and generate a final, high-quality plot of the complete point cloud.
