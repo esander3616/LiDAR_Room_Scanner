@@ -44,7 +44,7 @@ Servo Potentiometer Wire: Connect the new wire you soldered to an analog pin, li
 ## How to Run:
 Upload the Code: Connect the Arduino to your computer and upload the scanner.ino sketch.
 
-Open Serial Monitor (Optional): You can open the Arduino Serial Monitor at 115200 baud to see the raw r,phi,theta data being streamed.
+Open Serial Monitor: You can open the Arduino Serial Monitor at 115200 baud to see the raw r,phi,theta data being streamed.
 
 Run the Visualizer: Execute the Python script from your terminal.
 
