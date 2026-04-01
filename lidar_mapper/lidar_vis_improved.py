@@ -27,7 +27,6 @@ def main():
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111, projection='3d')
 
-    # Set up dark observatory-style plot
     fig.patch.set_facecolor('black')
     ax.set_facecolor('black')
     ax.grid(False)
@@ -82,7 +81,6 @@ def main():
         ser.close()
         plt.ioff()
         
-        # Final full plot with ALL points
         fig = plt.figure(figsize=(10, 8))
         ax = fig.add_subplot(111, projection='3d')
         fig.patch.set_facecolor('black')
